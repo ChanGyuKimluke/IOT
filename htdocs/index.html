@@ -1,13 +1,4 @@
-<?php session_start(); ?>
 <!DOCTYPE HTML>
-<?php
-if(!isset($_SESSION['email']))
-{
-?><meta http-equiv="refresh" content="0;url=http://192.168.33.66/user_log_in.php">
-<?php
-    exit;
-}
-?>
 <html>
 <head>
 	<title>QI B team Homepage</title>
@@ -65,7 +56,13 @@ if(!isset($_SESSION['email']))
 
 					<!-- Header -->
 					<header id="header">
-						<a href="index.php" class="logo"><strong>QI Airpollution Center</strong> by B team</a>
+						<a href="index.html" class="logo"><strong>QI Airpollution Center</strong> by B team</a>
+
+				<!--		Email :<input type="email" name="data1" value="" required />
+						Password :<input type="password" name="data1" value="" required /> -->
+					<!--	<input type="submit" value="log-in" style="height=100px; width=720px"/>
+						<input type="submit" value="sign-up"style="height=100px; width=720px"/> -->
+
 						<ul class="icons">
 							<li><a href="https://twitter.com" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
 							<li><a href="https://www.facebook.com" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
@@ -76,8 +73,8 @@ if(!isset($_SESSION['email']))
 					</header>
 					<br>
 					<div id="relative">
-					<form method="post" action="user_log_out.php">
-						<input type="submit" value="log-out"	/>
+					<form method="post" action="user_log_in.php">
+						<input type="submit" value="log-in"	/>
 					</form>
 					</div>
 					</br>

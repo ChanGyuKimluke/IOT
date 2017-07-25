@@ -17,13 +17,12 @@
 			padding: 0;
 		}
 	</style>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 
 <body>
-
 		<!-- Wrapper -->
 		<div id="wrapper">
-
 			<!-- Main -->
 			<div id="main">
 				<div class="inner">
@@ -39,44 +38,36 @@
 							<li><a href="https://medium.com" class="icon fa-medium"><span class="label">Medium</span></a></li>
 						</ul>
 					</header>
+
 					<section id="banner">
 
 						<div class="logo">
-
-
+            <form method="POST" action="#">
 						<div class="box">
-						<dl>
-							<dd>
-							<h2>Log In To QI</h2>
+              <dl>
+              <dd>
+							<h2>Change Your Password</h2>
 							</dd>
-							<form method ="post" action ="user_log_in_command.php" >
-								<dd>
-										<label for="email">Email</label>
-										<input id="email" type="text" name="email" size="15" autofocus required>
-								</dd>
-
-								<dd>
-									<label for="password">Password</label>
-									<input id="password" type="password" name="password" required>
-								</dd>
-
-								<dd>
-							<br>
-							<input type="submit" value="log-in"></input>
-							</dd>
-							</form>
-							<ul>
-								<dd>
-								<br>
-        				<li><a href="reset_password.php">Forgot your password?</a></li>
-        				<li>Need an account? <a href="user_sign_up.php">Sign up here</a>.</li>
-								</dd>
-							</ul>
-						</dl>
-							</div>
-
+                <dd>
+                <label for="token">Enter your recovery token</label>
+                <input id="token" type="text" name="token" size="15" autofocus required>
+                </dd>
+                <dd>
+                <label for="password">Enter your new password</label>
+                <input id="password" type="password" name="password" size="15" autofocus required>
+                </dd>
+                <dd>
+                <label for="password">Confirm your password</label>
+                <input id="password" type="password" name="password" size="15" autofocus required>
+                </dd>
+                <dd>
+                <br>
+                <p><button type="submit" class="rs-btn rs-btn-primary">Reset password</button></p>
+                </dd>
+              </dl>
+              </div>
+            </form>
 						</div>
-
 					</section>
 
 				</div>
@@ -158,10 +149,10 @@
 		<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 		<script src="assets/js/main.js"></script>
 
-		<script language="JavaScript">
 
-		</script>
+	<!--	<script language="JavaScript">
+			setTimeout("history.go(0);", 20000);
+		</script> -->
 
 </body>
-
 </html>

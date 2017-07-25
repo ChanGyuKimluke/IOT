@@ -26,7 +26,7 @@
 
 							<!-- Header -->
 								<header id="header">
-									<a href="index.html" class="logo"><strong>QI Airpollution Center</strong> by B team</a>
+									<a href="index.php" class="logo"><strong>QI Airpollution Center</strong> by B team</a>
 									<ul class="icons">
 										<li><a href="https://twitter.com" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
 										<li><a href="https://www.facebook.com" class="icon fa-facebook"><span class="label">Facebook</span></a></li>

@@ -3,6 +3,7 @@
 <head>
 	<title>QI B team Homepage</title>
 	<meta charset="utf-8" />
+
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="assets/css/main.css" />
@@ -17,39 +18,64 @@
 			padding: 0;
 		}
 
-		#map-canvas,
-		#map_canvas {
-			width: 100%;
-			/* 구글 지도 넓이 */
-			height: 800px;
-			/* 구글 지도 높이 */
-			font-size: 12px;
-		}
 
-		@media print {
-			html,
-			body {
-				height: auto;
-			}
-			#map_canvas {
-				height: 650px;
-			}
-		}
-		#relative
-		{
-			width:auto;
-			height:auto;
-			position:relative;
-			float:right;
-		}
 	</style>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 
-<body>
+<script>
+function checkinfo(){
+			var check = eval(document.info);
+			var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
 
+			if(check.email.value==""){
+				alert("please, enter your email");
+				check.email.value.focus();
+				return false;
+
+			}else if (exptext.test(check.email.value)==false) {
+				alert("E-mail format is incorrect");
+				check.email.value.focus();
+				return false;
+
+			}
+			if(check.password.value==""||check.passwordcheck.value==""){
+				alert("please, enter your password");
+				check.password.value.focus();
+				check.password.clear();
+				return false;
+			}
+
+			if(check.password.value.length < 6 || check.passwordcheck.value <6)
+			{
+				alert("Please enter 6 to 16 digits as a combination of letters, numbers, and special characters(~!@#$%^&*()-_? allow only this).");
+				check.password.value.focus();
+				check.password.clear();
+				return false;
+			}
+
+			if(!check.password.value.match(/[a-zA-Z0-9]*[^a-zA-Z0-9\n]+[a-zA-Z0-9]*$/) || !check.passwordcheck.value.match(/[a-zA-Z0-9]*[^a-zA-Z0-9\n]+[a-zA-Z0-9]*$/)){
+				alert("Please enter 6 to 16 digits as a combination of letters, numbers, and special characters.");
+				check.password.value.focus();
+				check.password.clear();
+				return false;
+			}
+
+			if(check.password.value!=check.passwordcheck.value){
+				alert("password and passwordcheck isn't correct");
+				check.password.clear();
+				check.password.value.focus();
+				return false;
+			}
+
+}
+
+</script>
+
+
+<body>
 		<!-- Wrapper -->
 		<div id="wrapper">
-
 			<!-- Main -->
 			<div id="main">
 				<div class="inner">
@@ -65,61 +91,104 @@
 							<li><a href="https://medium.com" class="icon fa-medium"><span class="label">Medium</span></a></li>
 						</ul>
 					</header>
+
 					<section id="banner">
-							
+
 						<div class="content">
-						<form method ="post" action ="user_information_command.php">
+						<form name="info" method ="post" action ="user_information_command.php">
 						<div class="box">
 						<dl>
 							<dd>
-							<label for="email">Email</label>
-							<input id="email" type="text" name="email" autofocus required>
+								<label for="email">Email</label>
+								<input id="email" type="text" name="email" autofocus required>
+								<div id="result"></div>
+								<input type="button" value="email check" id="emailcheck"/>
+								<script>
+									$('#emailcheck').click(function(){
+										var check = eval(document.info);
+										var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+
+										if(check.email.value==""){
+											alert("please, enter your email");
+											check.email.value.focus();
+											return false;
+
+										}else if (exptext.test(check.email.value)==false) {
+											alert("E-mail format is incorrect");
+											check.email.value.focus();
+											return false;
+										}
+
+										$('#result').html(''); //div 결과값 클리어
+										$.ajax({
+											url:'emailchecking_command.php',
+											type:'POST',
+											datatype:'json',
+											data:{"email":$('#email').val()},
+											success:function(result){
+												var obj = jQuery.parseJSON(result);
+												if(obj.result == true){
+														// alert('success' + JSON.stringify(result));
+														$('#result').html('<b style="font-size:15px; color:green">available email</b>');
+												}else{
+														// alert('fail' + JSON.stringify(result));
+														$('#result').html('<b style="font-size:15px; color:red">your email was already found. </b>');
+													}
+											},
+											error: function(result) {
+												//alert(result);
+												 alert(JSON.stringify(result));
+											//	$('#result').html('NO GOOD');
+											}
+										});
+									})
+								</script>
 							</dd>
-							
+
 							<br>
 							<dd>
 							<label for="password">Password</label>
 							<input id="password" type="password" name="password" required>
 							</dd>
-							
+
 							<br>
 							<dd>
-							<label for="password">Password check</label>
-							<input id="password" type="password" name="password" required>
+							<label for="passwordcheck">Confirm password</label>
+							<input id="passwordcheck" type="password" name="passwordcheck" required>
 							</dd>
-							
+
 							<br>
 							<dd>
+
 							<label for="firstname">FirstName</label>
 							<input id="firstname" type="text" name="firstname" autofocus required>
 							</dd>
-							
+
 							<br>
 							<dd>
 							<label for="lastname">LastName</label>
 							<input id="lastname" type="text" name="lastname" autofocus required>
 							</dd>
-							
+
 							<br>
 							<dd>
 							<!-- birthday -->
 							</dd>
-							
+
 							<br>
 							<dd>
-			
-							<input type="submit" value="submit"/>
-							
+
+							<input type="submit" value="submit" onclick="checkinfo()"/>
 							<input type="button" value="cancel" onclick="javascript:history.go(-1)"/>
-							
+
 							</dd>
-							
+
 						</dl>
 							</div>
 							</form>
 						</div>
 					</section>
-					
+
 				</div>
 			</div>
 
@@ -199,9 +268,10 @@
 		<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 		<script src="assets/js/main.js"></script>
 
-		<script language="JavaScript">
+
+	<!--	<script language="JavaScript">
 			setTimeout("history.go(0);", 20000);
-		</script>
+		</script> -->
 
 </body>
 
