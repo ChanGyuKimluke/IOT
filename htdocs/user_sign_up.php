@@ -18,12 +18,23 @@
 			padding: 0;
 		}
 
+		#emailcheck{
+        background: #0000ff !important;
+        color: #ffffff !important;
+        opacity: 0.2;
+      }
+
+      #emailcheck:hover
+      {
+        opacity: 1.0;
+      }
+
 
 	</style>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 
-<script>
+<script type="text/javascript">
 function checkinfo(){
 			var check = eval(document.info);
 			var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
@@ -33,7 +44,8 @@ function checkinfo(){
 				check.email.value.focus();
 				return false;
 
-			}else if (exptext.test(check.email.value)==false) {
+			}
+			if (exptext.test(check.email.value)==false) {
 				alert("E-mail format is incorrect");
 				check.email.value.focus();
 				return false;
@@ -44,30 +56,47 @@ function checkinfo(){
 				check.password.value.focus();
 				check.password.clear();
 				return false;
-			}
 
+			}
 			if(check.password.value.length < 6 || check.passwordcheck.value <6)
 			{
 				alert("Please enter 6 to 16 digits as a combination of letters, numbers, and special characters(~!@#$%^&*()-_? allow only this).");
 				check.password.value.focus();
 				check.password.clear();
 				return false;
-			}
 
+			}
 			if(!check.password.value.match(/[a-zA-Z0-9]*[^a-zA-Z0-9\n]+[a-zA-Z0-9]*$/) || !check.passwordcheck.value.match(/[a-zA-Z0-9]*[^a-zA-Z0-9\n]+[a-zA-Z0-9]*$/)){
 				alert("Please enter 6 to 16 digits as a combination of letters, numbers, and special characters.");
 				check.password.value.focus();
 				check.password.clear();
 				return false;
-			}
 
+			}
 			if(check.password.value!=check.passwordcheck.value){
 				alert("password and passwordcheck isn't correct");
 				check.password.clear();
 				check.password.value.focus();
 				return false;
-			}
 
+			}
+			if(check.firstname.value==""){
+				alert("please, enter your FirstName");
+				check.firstname.value.focus();
+				return false;
+
+			}
+			if(check.lastname.value==""){
+				alert("please, enter your LastName");
+				check.lastname.value.focus();
+				return false;
+
+			}
+			if(check.password.value.match(/[a-zA-Z0-9]*[^a-zA-Z0-9\n]+[a-zA-Z0-9]*$/) && check.passwordcheck.value.match(/[a-zA-Z0-9]*[^a-zA-Z0-9\n]+[a-zA-Z0-9]*$/){
+
+				check.submit();
+			}
+			
 }
 
 </script>
@@ -95,12 +124,14 @@ function checkinfo(){
 					<section id="banner">
 
 						<div class="content">
-						<form name="info" method ="post" action ="user_information_command.php">
+						<form name="info" method ="post" action ="/slim-api/user-info">
+						<!-- user_information_command.php -->
+
 						<div class="box">
 						<dl>
 							<dd>
 								<label for="email">Email</label>
-								<input id="email" type="text" name="email" autofocus required>
+								<input id="email" type="text" name="email" placeholder="Enter your E-mail" autofocus required>
 								<div id="result"></div>
 								<input type="button" value="email check" id="emailcheck"/>
 								<script>
@@ -121,7 +152,7 @@ function checkinfo(){
 
 										$('#result').html(''); //div 결과값 클리어
 										$.ajax({
-											url:'emailchecking_command.php',
+											url:'emailchecking-command.php',
 											type:'POST',
 											datatype:'json',
 											data:{"email":$('#email').val()},
@@ -148,26 +179,26 @@ function checkinfo(){
 							<br>
 							<dd>
 							<label for="password">Password</label>
-							<input id="password" type="password" name="password" required>
+							<input id="password" type="password" name="password" placeholder="Enter your Password" required>
 							</dd>
 
 							<br>
 							<dd>
 							<label for="passwordcheck">Confirm password</label>
-							<input id="passwordcheck" type="password" name="passwordcheck" required>
+							<input id="passwordcheck" type="password" name="passwordcheck" placeholder="Confirm Password" required>
 							</dd>
 
 							<br>
 							<dd>
 
-							<label for="firstname">FirstName</label>
-							<input id="firstname" type="text" name="firstname" autofocus required>
+							<label for="firstname">First name</label>
+							<input id="firstname" type="text" name="firstname" placeholder="Enter your FirstName" autofocus required>
 							</dd>
 
 							<br>
 							<dd>
-							<label for="lastname">LastName</label>
-							<input id="lastname" type="text" name="lastname" autofocus required>
+							<label for="lastname">Last name</label>
+							<input id="lastname" type="text" name="lastname" placeholder="Enter your LastName" autofocus required>
 							</dd>
 
 							<br>
@@ -178,8 +209,8 @@ function checkinfo(){
 							<br>
 							<dd>
 
-							<input type="submit" value="submit" onclick="checkinfo()"/>
-							<input type="button" value="cancel" onclick="javascript:history.go(-1)"/>
+							<input type="submit" id="emailcheck" value="Create Account" name="create_account" onclick="checkinfo();" />
+							<input type="button" id="emailcheck" value="cancel" onclick="javascript:history.go(-1)"/>
 
 							</dd>
 
@@ -192,69 +223,6 @@ function checkinfo(){
 				</div>
 			</div>
 
-
-
-			<!-- Sidebar -->
-			<div id="sidebar">
-				<div class="inner">
-
-					<!-- Search -->
-					<section id="search" class="alt">
-						<form method="post" action="#">
-							<input type="text" name="query" id="query" placeholder="Search" />
-						</form>
-					</section>
-
-					<!-- Menu -->
-					<nav id="menu">
-						<header class="major">
-							<h2>Menu</h2>
-						</header>
-						<ul>
-							<li>
-							<span class="opener">Air pollution History</span>
-							<ul>
-								<li><a href="airpollution.html">CO</a></li>
-								<li><a href="#">CO2</a></li>
-								<li><a href="#">SO2</a></li>
-								<li><a href="#">NO2</a></li>
-								<li><a href="#">O3</a></li>
-								<li><a href="#">PM2.5</a></li>
-								<li><a href="#">Temperature</a></li>
-								<li><a href="#">humidity</a></li>
-							</ul>
-						</li>
-
-						<li>
-						<span class="opener">HeartBeat History</span>
-						<ul>
-							<li><a href="basic.html">Heart rate</a></li>
-							<li><a href="#">Breathing rate</a></li>
-						</ul>
-					</li>
-							<li><a href="user_information.php">Users Information</a></li>
-
-						</ul>
-					</nav>
-
-
-					<!-- Section -->
-					<section>
-						<header class="major">
-							<h2>Get in touch</h2>
-						</header>
-						<p>Sed varius enim lorem ullamcorper dolore aliquam aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore. Proin sed aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aliquam.</p>
-						<ul class="contact">
-							<li class="fa-envelope-o"><a href="#">softeran@gmail.com</a></li>
-							<li class="fa-phone">(404)271-3932</li>
-							<li class="fa-home">1234 Somewhere Road #8254<br /> Nashville, TN 00000-0000</li>
-						</ul>
-					</section>
-
-					<!-- Footer -->
-					<footer id="footer">
-						<p class="copyright">&copy; Untitled. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
-					</footer>
 
 				</div>
 			</div>
@@ -274,5 +242,4 @@ function checkinfo(){
 		</script> -->
 
 </body>
-
 </html>

@@ -42,6 +42,17 @@
 			position:relative;
 			float:right;
 		}
+
+		#log{
+         background: #0000ff !important;
+         color: #ffffff !important;
+         opacity: 0.2;
+      }
+
+      #log:hover
+      {
+         opacity: 1.0;
+      }
 	</style>
 </head>
 
@@ -74,7 +85,7 @@
 					<br>
 					<div id="relative">
 					<form method="post" action="user_log_in.php">
-						<input type="submit" value="log-in"	/>
+						<input type="submit" id="log" value="log-in"	/>
 					</form>
 					</div>
 					</br>
@@ -146,23 +157,23 @@
 								google.maps.event.addDomListener(window, 'load', initialize);
 							</script>
 
-							<table cellpadding="0" cellspacing="3" bgcolor="#f4f4f4">
+							<table cellpadding="0" cellspacing="3" bgcolor="#f4f4f4" >
 								<tr>
-									<td bgcolor="#ffffff">
+									<!-- <td bgcolor="#ffffff" style="padding: 0px;"> -->
 										<table width="100%" cellpadding="0" cellspacing="1" bgcolor="#cccccc">
 											<tr>
-												<td bgcolor="#ffffff">
+												<!-- <td bgcolor="#ffffff" style="padding: 0px;"> -->
 													<table width="100%" cellpadding="3" cellspacing="1" bgcolor="#eeeeee">
 														<tr>
-															<td bgcolor="#ffffff">
+															<!-- <td bgcolor="#ffffff" style="padding: 0px;"> -->
 																<div id="map_canvas" style="border:1px solid #ccc; margin:0 0 0px 0;"></div>
-															</td>
+															<!-- </td> -->
 														</tr>
 													</table>
-												</td>
+												<!-- </td> -->
 											</tr>
 										</table>
-									</td>
+									<!-- </td> -->
 								</tr>
 							</table>
 							<!-- <ul class="actions">
@@ -249,11 +260,11 @@
 				<div class="inner">
 
 					<!-- Search -->
-					<section id="search" class="alt">
+					<!-- <section id="search" class="alt">
 						<form method="post" action="#">
 							<input type="text" name="query" id="query" placeholder="Search" />
 						</form>
-					</section>
+					</section> -->
 
 					<!-- Menu -->
 					<nav id="menu">
@@ -264,7 +275,7 @@
 							<li>
 							<span class="opener">Air pollution History</span>
 							<ul>
-								<li><a href="airpollution.html">CO</a></li>
+								<li><a href="co_data.php">CO</a></li>
 								<li><a href="#">CO2</a></li>
 								<li><a href="#">SO2</a></li>
 								<li><a href="#">NO2</a></li>
@@ -318,9 +329,9 @@
 		<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 		<script src="assets/js/main.js"></script>
 
-		<script language="JavaScript">
+		<!-- <script language="JavaScript">
 			setTimeout("history.go(0);", 20000);
-		</script>
+		</script> -->
 
 </body>
 

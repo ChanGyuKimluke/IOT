@@ -42,7 +42,7 @@
 					<section id="banner">
 
 						<div class="logo">
-            <form method="POST" action="#">
+            <form method="POST" action="/slim-api/reset-password-change">
 						<div class="box">
               <dl>
               <dd>
@@ -62,7 +62,7 @@
                 </dd>
                 <dd>
                 <br>
-                <p><button type="submit" class="rs-btn rs-btn-primary">Reset password</button></p>
+                <p><input type="submit" class="rs-btn rs-btn-primary" value="Change password" /></p>
                 </dd>
               </dl>
               </div>
@@ -80,11 +80,11 @@
 				<div class="inner">
 
 					<!-- Search -->
-					<section id="search" class="alt">
+					<!-- <section id="search" class="alt">
 						<form method="post" action="#">
 							<input type="text" name="query" id="query" placeholder="Search" />
 						</form>
-					</section>
+					</section> -->
 
 					<!-- Menu -->
 					<nav id="menu">

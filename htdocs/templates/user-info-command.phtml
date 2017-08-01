@@ -1,0 +1,52 @@
+<?php
+    include '../helper/function.php';
+    include '../signup_confirmation/connection/connect.php';
+    include '../helper/activate_account_function.php';
+
+    $code = generateRandomString();
+
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+    $passwordcheck = $_POST["passwordcheck"];
+    $firstname = $_POST["firstname"];
+    $lastname = $_POST["lastname"];
+
+    $query = "select * from user_data where email = :email";
+    $pdo = $db->prepare($query);
+    $pdo->bindValue(':email', $email);
+    $pdo->execute();
+    $result = $pdo->fetch();
+
+    if($result == null){
+      
+    }else{
+
+      echo "<script>
+            alert('your email was already found');
+            location.replace('./user_sign_up.php');
+           </script>";
+
+    }
+
+    if($password == $passwordcheck && $result == null){
+
+    $passwordhs = password_hash($password, PASSWORD_DEFAULT);
+    $query = "insert into user_data(email, password, fname, lname, email_code, email_token, login_state, latitude, longitude) values(:email, :passwordhs, :fname, :lname, :code, null, 0, 0, 0)";
+
+    $pdo = $db->prepare($query);
+    $pdo->bindValue(':email', $email);
+    $pdo->bindValue(':passwordhs', $passwordhs);
+    $pdo->bindValue(':fname', $firstname);
+    $pdo->bindValue(':lname', $lastname);
+    $pdo->bindValue(':code', $code);
+    $pdo->execute();
+    
+    send_code($code, $email);
+    
+    echo "<script>
+            alert('we sent email. so, you need to check your email now');
+            // location.replace('./user_log_in.php');
+           </script>";
+
+    }
+?>

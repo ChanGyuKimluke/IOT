@@ -13,10 +13,7 @@ if(!isset($_SESSION['email']))
 	<title>QI B team Homepage</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 	<link rel="stylesheet" href="assets/css/main.css" />
-	<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
-	<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 	<meta http-equiv="content-type" content="text/html"; charset="utf-8" />
 	<style type="text/css">
 		html,
@@ -151,21 +148,21 @@ if(!isset($_SESSION['email']))
 
 							<table cellpadding="0" cellspacing="3" bgcolor="#f4f4f4">
 								<tr>
-									<td bgcolor="#ffffff">
+									<!-- <td bgcolor="#ffffff"> -->
 										<table width="100%" cellpadding="0" cellspacing="1" bgcolor="#cccccc">
 											<tr>
-												<td bgcolor="#ffffff">
+												<!-- <td bgcolor="#ffffff"> -->
 													<table width="100%" cellpadding="3" cellspacing="1" bgcolor="#eeeeee">
 														<tr>
-															<td bgcolor="#ffffff">
+															<!-- <td bgcolor="#ffffff"> -->
 																<div id="map_canvas" style="border:1px solid #ccc; margin:0 0 0px 0;"></div>
-															</td>
+															<!-- </td> -->
 														</tr>
 													</table>
-												</td>
+												<!-- </td> -->
 											</tr>
 										</table>
-									</td>
+									<!-- </td> -->
 								</tr>
 							</table>
 							<!-- <ul class="actions">
@@ -252,11 +249,11 @@ if(!isset($_SESSION['email']))
 				<div class="inner">
 
 					<!-- Search -->
-					<section id="search" class="alt">
+					<!-- <section id="search" class="alt">
 						<form method="post" action="#">
 							<input type="text" name="query" id="query" placeholder="Search" />
 						</form>
-					</section>
+					</section> -->
 
 					<!-- Menu -->
 					<nav id="menu">
@@ -267,7 +264,7 @@ if(!isset($_SESSION['email']))
 							<li>
 							<span class="opener">Air pollution History</span>
 							<ul>
-								<li><a href="airpollution.html">CO</a></li>
+								<li><a href="co_data.php">CO</a></li>
 								<li><a href="#">CO2</a></li>
 								<li><a href="#">SO2</a></li>
 								<li><a href="#">NO2</a></li>
@@ -321,10 +318,10 @@ if(!isset($_SESSION['email']))
 		<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 		<script src="assets/js/main.js"></script>
 
-		<script language="JavaScript">
+		<!-- <script language="JavaScript">
 			setTimeout("history.go(0);", 20000);
 		</script>
-
+ -->
 </body>
 
 </html>
